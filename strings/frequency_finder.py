@@ -76,10 +76,9 @@ def english_freq_match_score(message: str) -> int:
     1
     """
     freq_order = get_frequency_order(message)
-    match_score = 0
-    for common_letter in ETAOIN[:6]:
-        if common_letter in freq_order[:6]:
-            match_score += 1
+    match_score = sum(
+        common_letter in freq_order[:6] for common_letter in ETAOIN[:6]
+    )
 
     for uncommon_letter in ETAOIN[-6:]:
         if uncommon_letter in freq_order[-6:]:

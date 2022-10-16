@@ -7,7 +7,7 @@ LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + " \t\n"
 def load_dictionary() -> dict[str, None]:
     path = os.path.split(os.path.realpath(__file__))
     english_words: dict[str, None] = {}
-    with open(path[0] + "/dictionary.txt") as dictionary_file:
+    with open(f"{path[0]}/dictionary.txt") as dictionary_file:
         for word in dictionary_file.read().split("\n"):
             english_words[word] = None
     return english_words
@@ -24,19 +24,12 @@ def get_english_count(message: str) -> float:
     if possible_words == []:
         return 0.0
 
-    matches = 0
-    for word in possible_words:
-        if word in ENGLISH_WORDS:
-            matches += 1
-
+    matches = sum(word in ENGLISH_WORDS for word in possible_words)
     return float(matches) / len(possible_words)
 
 
 def remove_non_letters(message: str) -> str:
-    letters_only = []
-    for symbol in message:
-        if symbol in LETTERS_AND_SPACE:
-            letters_only.append(symbol)
+    letters_only = [symbol for symbol in message if symbol in LETTERS_AND_SPACE]
     return "".join(letters_only)
 
 
