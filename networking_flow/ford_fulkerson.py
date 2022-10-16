@@ -9,8 +9,7 @@ Description:
 def bfs(graph, s, t, parent):
     # Return True if there is node that has not iterated.
     visited = [False] * len(graph)
-    queue = []
-    queue.append(s)
+    queue = [s]
     visited[s] = True
 
     while queue:
@@ -21,7 +20,7 @@ def bfs(graph, s, t, parent):
                 visited[ind] = True
                 parent[ind] = u
 
-    return True if visited[t] else False
+    return bool(visited[t])
 
 
 def ford_fulkerson(graph, source, sink):

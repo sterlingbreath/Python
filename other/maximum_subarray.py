@@ -10,11 +10,7 @@ def max_subarray(nums: list[int]) -> int:
     curr_max = ans = nums[0]
 
     for i in range(1, len(nums)):
-        if curr_max >= 0:
-            curr_max = curr_max + nums[i]
-        else:
-            curr_max = nums[i]
-
+        curr_max = curr_max + nums[i] if curr_max >= 0 else nums[i]
         ans = max(curr_max, ans)
 
     return ans

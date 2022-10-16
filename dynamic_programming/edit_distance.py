@@ -22,7 +22,7 @@ class EditDistance:
         self.__prepare__()
 
     def __prepare__(self, n=0, m=0):
-        self.dp = [[-1 for y in range(0, m)] for x in range(0, n)]
+        self.dp = [[-1 for _ in range(m)] for _ in range(n)]
 
     def __solve_dp(self, x, y):
         if x == -1:
